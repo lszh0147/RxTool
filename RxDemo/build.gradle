@@ -5,15 +5,29 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 29
+
+        defaultConfig {
+            ndk {
+                abiFilters "arm64-v8a", "x86"
+            }
+        }
+
+
+    compileSdkVersion 28
     buildToolsVersion = '29.0.3'
 
     signingConfigs {
+        release {
+            storeFile file('TestKey.jks')
+            storePassword '123321'
+            keyAlias = 'Test'
+            keyPassword '123321'
+        }
         debug {
-            storeFile file('/home/tamsiree/Documents/TamDocuments/WorkSpace/Android/TamKey.jks')
-            storePassword 'Ls547817'
-            keyAlias = 'TamKey'
-            keyPassword 'Ls547817'
+            storeFile file('TestKey.jks')
+            storePassword '123321'
+            keyAlias = 'Test'
+            keyPassword '123321'
         }
     }
 
@@ -21,7 +35,7 @@ android {
     defaultConfig {
         applicationId "com.tamsiree.rxdemo"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
